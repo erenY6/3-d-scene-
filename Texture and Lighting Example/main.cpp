@@ -56,23 +56,17 @@ int main() {
     std::vector< glm::vec3 > temp_vertices;
     std::vector< glm::vec2 > temp_textures;
     std::vector< glm::vec3 > temp_normals;
-   // std::vector< glm::vec3 > temp_colors;
-   // std::vector< GLuint > temp_indices;
     size_t size;
     float r, g, b;
 
     std::vector< glm::vec3 > temp_vertices1;
     std::vector< glm::vec2 > temp_textures1;
     std::vector< glm::vec3 > temp_normals1;
-   // std::vector< glm::vec3 > temp_colors1;
-   // std::vector< GLuint > temp_indices1;
     size_t size1;
 
     std::vector< glm::vec3 > temp_vertices2;
     std::vector< glm::vec2 > temp_textures2;
     std::vector< glm::vec3 > temp_normals2;
-    // std::vector< glm::vec3 > temp_colors1;
-    // std::vector< GLuint > temp_indices1;
     size_t size2;
 
     MMatr = WorldMatrix;
@@ -96,8 +90,6 @@ int main() {
     temp_textures3.push_back({ 1.0,0.0 });
 
 
- 
-
   //  size = temp_vertices3.size();
 
     cube1.load_coords(points2, 4);
@@ -105,7 +97,7 @@ int main() {
     cube1.load_texcoord(temp_textures3.data(), temp_textures3.size());
     cube1.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
     cube1.load_shaders("texvs.glsl", "texfs.glsl");
-    cube1.load_texture("top.jpg", "");
+    cube1.load_texture("pictures/top.jpg", "");
 
     /////////////пол
 
@@ -132,7 +124,7 @@ int main() {
     cube2.load_texcoord(temp_textures4.data(), temp_textures4.size());
     cube2.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
     cube2.load_shaders("texvs.glsl", "texfs.glsl");
-    cube2.load_texture("bottom.jpg", "");
+    cube2.load_texture("pictures/bottom.jpg", "");
 
     ///////////////////////////////// стена 1
         glm::vec3 points4[] = {
@@ -157,7 +149,7 @@ int main() {
     cube3.load_texcoord(temp_textures5.data(), temp_textures5.size());
     cube3.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
     cube3.load_shaders("texvs.glsl", "texfs.glsl");
-    cube3.load_texture("wall1.jpg", "");
+    cube3.load_texture("pictures/wall1.jpg", "");
     /////////////////// стена 2
 
             glm::vec3 points5[] = {
@@ -185,7 +177,7 @@ int main() {
     cube4.load_texcoord(temp_textures6.data(), temp_textures6.size());
     cube4.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
     cube4.load_shaders("texvs.glsl", "texfs.glsl");
-    cube4.load_texture("wall2.jpg", "");
+    cube4.load_texture("pictures/wall2.jpg", "");
 
     ////////////////////// стена 3
 
@@ -212,7 +204,7 @@ int main() {
     cube5.load_texcoord(temp_textures7.data(), temp_textures7.size());
     cube5.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
     cube5.load_shaders("texvs.glsl", "texfs.glsl");
-    cube5.load_texture("wall3.jpg", "");
+    cube5.load_texture("pictures/wall3.jpg", "");
 
 
     ///////////// СТЕНА 4
@@ -238,14 +230,14 @@ int main() {
     cube6.load_texcoord(temp_textures8.data(), temp_textures8.size());
     cube6.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
     cube6.load_shaders("texvs.glsl", "texfs.glsl");
-    cube6.load_texture("wall4.jpg", "");
+    cube6.load_texture("pictures/wall4.jpg", "");
 
     //////////////////////////////
 
 
 
 
-    loadOBJ("ii2.obj", temp_vertices, temp_textures, temp_normals);
+    loadOBJ("models/ii2.obj", temp_vertices, temp_textures, temp_normals);
     size = temp_vertices.size();
     Model main(window,2);
     //Загрузка данных модели
@@ -255,10 +247,10 @@ int main() {
     main.load_shaders("texvs.glsl", "texfs.glsl");
     main.setMaterial(glm::vec3(0), glm::vec3(0), glm::vec3(0), 32);
     //Капибары не отражают ничего!
-    main.load_texture("grey5.jpeg", "");
+    main.load_texture("pictures/grey5.jpeg", "");
 
 
-    loadOBJ("floor1.obj", temp_vertices1, temp_textures1, temp_normals1);
+    loadOBJ("models/floor1.obj", temp_vertices1, temp_textures1, temp_normals1);
     size1 = temp_vertices1.size();
     Model floor(window,2);
     //Загрузка данных модели
@@ -268,10 +260,10 @@ int main() {
     floor.load_shaders("texvs.glsl", "texfs.glsl");
     floor.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
     //Капибары не отражают ничего!
-    floor.load_texture("grey4.jpeg", "");
+    floor.load_texture("pictures/grey4.jpeg", "");
 
 
-    loadOBJ("rock.obj", temp_vertices2, temp_textures2, temp_normals2);
+    loadOBJ("models/rock.obj", temp_vertices2, temp_textures2, temp_normals2);
     size2 = temp_vertices2.size();
     Model rock(window,2);
     //Загрузка данных модели
@@ -281,7 +273,7 @@ int main() {
     rock.load_shaders("texvs.glsl", "texfs.glsl");
     rock.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
     //Капибары не отражают ничего!
-    rock.load_texture("brown.jpg", "");
+    rock.load_texture("pictures/brown.jpg", "");
 
 
 
@@ -292,7 +284,7 @@ int main() {
     // std::vector< GLuint > temp_indices1;
     size_t size9;
 
-    loadOBJ("greenrock.obj", temp_vertices9, temp_textures9, temp_normals9);
+    loadOBJ("models/greenrock.obj", temp_vertices9, temp_textures9, temp_normals9);
     size9 = temp_vertices9.size();
     Model greenrock(window, 2);
     //Загрузка данных модели
@@ -302,7 +294,7 @@ int main() {
     greenrock.load_shaders("texvs.glsl", "texfs.glsl");
     greenrock.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
     //Капибары не отражают ничего!
-    greenrock.load_texture("green.jpeg", "");
+    greenrock.load_texture("pictures/green.jpeg", "");
 
 
 
@@ -311,7 +303,7 @@ int main() {
     std::vector< glm::vec3 > temp_normals10;
     size_t size10;
 
-    loadOBJ("crystals1.obj", temp_vertices10, temp_textures10, temp_normals10);
+    loadOBJ("models/crystals1.obj", temp_vertices10, temp_textures10, temp_normals10);
     size10 = temp_vertices10.size();
     Model crystals1(window, 2);
     crystals1.load_coords(temp_vertices10.data(), size10);
@@ -319,14 +311,14 @@ int main() {
     crystals1.load_texcoord(temp_textures10.data(), temp_textures10.size());
     crystals1.load_shaders("texvs.glsl", "texfs.glsl");
     crystals1.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
-    crystals1.load_texture("cr4.jpg","");
+    crystals1.load_texture("pictures/cr4.jpg","");
 
     std::vector< glm::vec3 > temp_vertices11;
     std::vector< glm::vec2 > temp_textures11;
     std::vector< glm::vec3 > temp_normals11;
     size_t size11;
 
-    loadOBJ("crystals2.obj", temp_vertices11, temp_textures11, temp_normals11);
+    loadOBJ("models/crystals2.obj", temp_vertices11, temp_textures11, temp_normals11);
     size11 = temp_vertices11.size();
     Model crystals2(window, 2);
     crystals2.load_coords(temp_vertices11.data(), size11);
@@ -334,7 +326,7 @@ int main() {
     crystals2.load_texcoord(temp_textures11.data(), temp_textures11.size());
     crystals2.load_shaders("texvs.glsl", "texfs.glsl");
     crystals2.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
-    crystals2.load_texture("cr3.jpg", "");
+    crystals2.load_texture("pictures/cr3.jpg", "");
 
 
     std::vector< glm::vec3 > temp_vertices12;
@@ -342,7 +334,7 @@ int main() {
     std::vector< glm::vec3 > temp_normals12;
     size_t size12;
 
-    loadOBJ("skeleton.obj", temp_vertices12, temp_textures12, temp_normals12);
+    loadOBJ("models/skeleton.obj", temp_vertices12, temp_textures12, temp_normals12);
     size12 = temp_vertices12.size();
     Model skeleton(window, 2);
     skeleton.load_coords(temp_vertices12.data(), size12);
@@ -350,14 +342,14 @@ int main() {
     skeleton.load_texcoord(temp_textures12.data(), temp_textures12.size());
     skeleton.load_shaders("texvs.glsl", "texfs.glsl");
     skeleton.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
-    skeleton.load_texture("grey4.jpeg", "");
+    skeleton.load_texture("pictures/grey4.jpeg", "");
 
     std::vector< glm::vec3 > temp_vertices13;
     std::vector< glm::vec2 > temp_textures13;
     std::vector< glm::vec3 > temp_normals13;
     size_t size13;
 
-    loadOBJ("rocks.obj", temp_vertices13, temp_textures13, temp_normals13);
+    loadOBJ("models/rocks.obj", temp_vertices13, temp_textures13, temp_normals13);
     size13 = temp_vertices13.size();
     Model rocks(window, 2);
     rocks.load_coords(temp_vertices13.data(), size13);
@@ -365,14 +357,14 @@ int main() {
     rocks.load_texcoord(temp_textures13.data(), temp_textures13.size());
     rocks.load_shaders("texvs.glsl", "texfs.glsl");
     rocks.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
-    rocks.load_texture("grey5.jpeg", "");
+    rocks.load_texture("pictures/grey5.jpeg", "");
 
     std::vector< glm::vec3 > temp_vertices14;
     std::vector< glm::vec2 > temp_textures14;
     std::vector< glm::vec3 > temp_normals14;
     size_t size14;
 
-    loadOBJ("liana.obj", temp_vertices14, temp_textures14, temp_normals14);
+    loadOBJ("models/liana.obj", temp_vertices14, temp_textures14, temp_normals14);
     size14 = temp_vertices14.size();
     Model liana(window, 2);
     liana.load_coords(temp_vertices14.data(), size14);
@@ -380,14 +372,14 @@ int main() {
     liana.load_texcoord(temp_textures14.data(), temp_textures14.size());
     liana.load_shaders("texvs.glsl", "texfs.glsl");
     liana.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
-    liana.load_texture("green.jpeg", "");
+    liana.load_texture("pictures/green.jpeg", "");
 
     std::vector< glm::vec3 > temp_vertices15;
     std::vector< glm::vec2 > temp_textures15;
     std::vector< glm::vec3 > temp_normals15;
     size_t size15;
 
-    loadOBJ("tree.obj", temp_vertices15, temp_textures15, temp_normals15);
+    loadOBJ("models/tree.obj", temp_vertices15, temp_textures15, temp_normals15);
     size15 = temp_vertices15.size();
     Model tree(window, 2);
     tree.load_coords(temp_vertices15.data(), size15);
@@ -395,14 +387,14 @@ int main() {
     tree.load_texcoord(temp_textures15.data(), temp_textures15.size());
     tree.load_shaders("texvs.glsl", "texfs.glsl");
     tree.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
-    tree.load_texture("brown2.jpeg", "");
+    tree.load_texture("pictures/brown2.jpeg", "");
 
     std::vector< glm::vec3 > temp_vertices16;
     std::vector< glm::vec2 > temp_textures16;
     std::vector< glm::vec3 > temp_normals16;
     size_t size16;
 
-    loadOBJ("mushroom1.obj", temp_vertices16, temp_textures16, temp_normals16);
+    loadOBJ("models/mushroom1.obj", temp_vertices16, temp_textures16, temp_normals16);
     size16 = temp_vertices16.size();
     Model mushroom1(window, 2);
     mushroom1.load_coords(temp_vertices16.data(), size16);
@@ -410,7 +402,7 @@ int main() {
     mushroom1.load_texcoord(temp_textures16.data(), temp_textures16.size());
     mushroom1.load_shaders("texvs.glsl", "texfs.glsl");
     mushroom1.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
-    mushroom1.load_texture("blue.jpeg", "");
+    mushroom1.load_texture("pictures/blue.jpeg", "");
 
 
 
@@ -419,7 +411,7 @@ int main() {
     std::vector< glm::vec3 > temp_normals17;
     size_t size17;
 
-    loadOBJ("mushroom2.obj", temp_vertices17, temp_textures17, temp_normals17);
+    loadOBJ("models/mushroom2.obj", temp_vertices17, temp_textures17, temp_normals17);
     size17 = temp_vertices17.size();
     Model mushroom2(window, 2);
     mushroom2.load_coords(temp_vertices17.data(), size17);
@@ -427,7 +419,7 @@ int main() {
     mushroom2.load_texcoord(temp_textures17.data(), temp_textures17.size());
     mushroom2.load_shaders("texvs.glsl", "texfs.glsl");
     mushroom2.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
-    mushroom2.load_texture("orange.jpeg", "");
+    mushroom2.load_texture("pictures/orange.jpeg", "");
 
 
     std::vector< glm::vec3 > temp_vertices18;
@@ -435,7 +427,7 @@ int main() {
     std::vector< glm::vec3 > temp_normals18;
     size_t size18;
 
-    loadOBJ("mushroom3.obj", temp_vertices18, temp_textures18, temp_normals18);
+    loadOBJ("models/mushroom3.obj", temp_vertices18, temp_textures18, temp_normals18);
     size18 = temp_vertices18.size();
     Model mushroom3(window, 2);
     mushroom3.load_coords(temp_vertices18.data(), size18);
@@ -443,7 +435,7 @@ int main() {
     mushroom3.load_texcoord(temp_textures18.data(), temp_textures18.size());
     mushroom3.load_shaders("texvs.glsl", "texfs.glsl");
     mushroom3.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
-    mushroom3.load_texture("mush4.jpg", "");
+    mushroom3.load_texture("pictures/mush4.jpg", "");
 
 
 
@@ -453,7 +445,7 @@ int main() {
     std::vector< glm::vec3 > temp_normals19;
     size_t size19;
 
-    loadOBJ("mushroom4.obj", temp_vertices19, temp_textures19, temp_normals19);
+    loadOBJ("models/mushroom4.obj", temp_vertices19, temp_textures19, temp_normals19);
     size19 = temp_vertices19.size();
     Model mushroom4(window, 2);
     mushroom4.load_coords(temp_vertices19.data(), size19);
@@ -461,7 +453,7 @@ int main() {
     mushroom4.load_texcoord(temp_textures19.data(), temp_textures19.size());
     mushroom4.load_shaders("texvs.glsl", "texfs.glsl");
     mushroom4.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
-    mushroom4.load_texture("violet.jpeg", "");
+    mushroom4.load_texture("pictures/violet.jpeg", "");
 
 
 
@@ -470,7 +462,7 @@ int main() {
     std::vector< glm::vec3 > temp_normals20;
     size_t size20;
 
-    loadOBJ("bird.obj", temp_vertices20, temp_textures20, temp_normals20);
+    loadOBJ("models/bird.obj", temp_vertices20, temp_textures20, temp_normals20);
     size20 = temp_vertices20.size();
     Model bird(window, 2);
     bird.load_coords(temp_vertices20.data(), size20);
@@ -478,7 +470,7 @@ int main() {
     bird.load_texcoord(temp_textures20.data(), temp_textures20.size());
     bird.load_shaders("texvs.glsl", "texfs.glsl");
     bird.setMaterial(glm::vec3(1), glm::vec3(1), glm::vec3(1), 32);
-    bird.load_texture("grey.jpg", "");
+    bird.load_texture("pictures/grey.jpg", "");
 
 
 
@@ -500,7 +492,6 @@ int main() {
     Lights.numPLights = 1;
     Lights.numSLights = 1;
 
-    //glm::vec3 lightPos = { 6,5,5 };
     glm::vec3 lightPos = { 2.6,2.1,2.9 };
     glm::vec3 la = { 0.8f, 0.8f, 0.8f };
     glm::vec3 ld = { 0.3f, 0.3f, 0.3f };
@@ -512,8 +503,17 @@ int main() {
     lSource.diffuse = ld;
     lSource.specular = ls;
     lSource.direction = glm::vec3(0,-3, 0);
-
     Lights.dirLight = lSource;
+
+    PointLight P;
+    P.ambient = glm::vec3(0.7f, 0.0f, 0.7f);
+    P.diffuse = glm::vec3(1.0f, 1.0f, 1.0f);
+    P.specular = glm::vec3(1, 1, 1);
+    P.position = { -2.2,1.6,-0.35 };
+    P.constant = 1;
+    P.linear = 0.35;
+    P.quadratic = 0.44;
+    Lights.pointLights.push_back(P);
 
 
     SpotLight SP;
@@ -530,18 +530,9 @@ int main() {
     //SP.quadratic = 0.0032;
     Lights.spotLights.push_back(SP);
 
-    PointLight P;
+    
+    
     PointLight P1;
-
-    P.ambient = glm::vec3(0.7f, 0.0f, 0.7f);
-    P.diffuse = glm::vec3(1.0f, 1.0f, 1.0f);
-    P.specular = glm::vec3(1, 1, 1);
-    P.position = { -2.2,1.6,-0.35 };
-    P.constant = 1;
-    P.linear = 0.35;
-    P.quadratic = 0.44;
-    Lights.pointLights.push_back(P);
-
     P1.ambient = glm::vec3(0.0f, 1.0f, 0.0f);
     //P1.diffuse = glm::vec3(1.0f, 1.0f, 1.0f);
     //P1.specular = glm::vec3(1, 1, 1);
@@ -644,9 +635,8 @@ int main() {
         if (!flag2 && rad <= 15.0f) {
             rad += 0.008f;
         }
-        
-
         liana.render(MMatr, VMatr, PMatr, Lights, GL_TRIANGLES);
+        
         MMatr = WorldMatrix;
 
 
@@ -655,8 +645,8 @@ int main() {
         mushroom3.render(MMatr, VMatr, PMatr, Lights, GL_TRIANGLES);
         mushroom4.render(MMatr, VMatr, PMatr, Lights, GL_TRIANGLES);
 
-        if (CamPosition.x >= -0.5 && CamPosition.x <= 0.9 &&
-            CamPosition.z >= -4.9 && CamPosition.z <= -4.0) {
+        if (CamPosition.x >= -1.5 && CamPosition.x <= 1.9 &&
+            CamPosition.z >= -5.9 && CamPosition.z <= -3.0) {
             if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_E))
             {
                 flag = !flag;
@@ -686,13 +676,14 @@ int main() {
             }
         }
         tree.render(MMatr1, VMatr, PMatr, Lights, GL_TRIANGLES);
+
         MMatr = WorldMatrix;
             if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_R))
             {
-                 MMatr = glm::rotate(MMatr, PI / 2 - rotation, glm::vec3(0.0, 1.0, 0.0));
+                 MMatr = glm::rotate(MMatr,  -rotation, glm::vec3(0.0, 1.0, 0.0));
             }
             else {
-                 MMatr = glm::rotate(MMatr, PI / 2 + rotation, glm::vec3(0.0, 1.0, 0.0));
+                 MMatr = glm::rotate(MMatr,   rotation, glm::vec3(0.0, 1.0, 0.0));
             }
 
         bird.render(MMatr, VMatr, PMatr, Lights, GL_TRIANGLES);

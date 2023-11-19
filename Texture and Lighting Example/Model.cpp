@@ -202,22 +202,17 @@ void Model::load_coords(glm::vec3* verteces, size_t count)
 {
     //Сохранение размера массива
     verteces_count = count;
-
     //Создание VBO
     GLuint coords_vbo = 0;
     glGenBuffers(1, &coords_vbo);
     glBindBuffer(GL_ARRAY_BUFFER, coords_vbo);
     glBufferData(GL_ARRAY_BUFFER, count * sizeof(glm::vec3), verteces, GL_STATIC_DRAW);
-
     //Так как VAO уже создан, то можно сразу связать с ним
     glBindVertexArray(vao);
-
     //Собственно связь
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-
     //Подключение атрибута
     glEnableVertexAttribArray(0);
-
 }
 
 void Model::load_colors(glm::vec3* colors, size_t count)
@@ -240,16 +235,13 @@ void Model::load_indices(GLuint* indices, size_t count)
 {
     //Сохранение числа индексов
     indices_count = count;
-
     //Дальше всё почти как всегда с поправкой на тип буфера
     glBindVertexArray(vao);
-
     GLuint elementbuffer;
     glGenBuffers(1, &elementbuffer); // Генерация одного объекта буфера вершин
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer); // Привязка элементного буфера
     //Загрузка индексов в используемый элементный буфер
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(GLuint), indices, GL_STATIC_DRAW);
-
 }
 
 void Model::load_normals(glm::vec3* normals, size_t count)
@@ -296,24 +288,6 @@ void Model::load_texture(string path, string pathtomap)
     glGenerateMipmap(GL_TEXTURE_2D);
     stbi_image_free(data);
 
-    //Так как карты отражений может не быть - применён вот такой метод
-    //Если пути нет, она загружена не будет и её id останется 0
-    //Так как она грузится второй, то id равный 0 означает что не загружена
-    //В текстурном шейдере жёстко сказано что если карты отражений нет - считать что объект не отражает ничего
-    //По хорошему можно для надёжности через флаг сделать или генерацию карты, но и так нормально
-    if (pathtomap != "")
-    {
-        data = stbi_load(pathtomap.c_str(), &width, &height, &nrChannels, 0);
-        glGenTextures(1, &texturemap);
-        glBindTexture(GL_TEXTURE_2D, texturemap);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-        glGenerateMipmap(GL_TEXTURE_2D);
-        stbi_image_free(data);
-    }
 }
 
 void Model::load_shaders(const char* vect, const char* frag)
@@ -321,21 +295,17 @@ void Model::load_shaders(const char* vect, const char* frag)
     // Переменные под результат компиляции программы
     GLint result = GL_FALSE;
     int infoLogLength;
-
     //Создание шейдерной программы
     shader_programme = glCreateProgram();
-
     //Загрузка текстов шейдеров из файлов
     string vstext = LoadShader(vect);
     const char* vertex_shader = vstext.c_str();
     string fstext = LoadShader(frag);
     const char* fragment_shader = fstext.c_str();
-
     //Создание вершинного шейдера
     GLuint vs = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vs, 1, &vertex_shader, NULL);
     glCompileShader(vs);
-
     //Проверка результата компиляции
     glGetShaderiv(vs, GL_COMPILE_STATUS, &result);
     glGetShaderiv(vs, GL_INFO_LOG_LENGTH, &infoLogLength);
@@ -347,12 +317,10 @@ void Model::load_shaders(const char* vect, const char* frag)
         std::cout << errorMessage;
         delete errorMessage;
     }
-
     //Аналогично с фрагментным шейдером
     GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fs, 1, &fragment_shader, NULL);
     glCompileShader(fs);
-
     glGetShaderiv(fs, GL_COMPILE_STATUS, &result);
     glGetShaderiv(fs, GL_INFO_LOG_LENGTH, &infoLogLength);
     if (infoLogLength > 0)
@@ -362,12 +330,9 @@ void Model::load_shaders(const char* vect, const char* frag)
         std::cout << errorMessage;
         delete errorMessage;
     }
-
     //Сборка программы
     glAttachShader(shader_programme, vs);
     glAttachShader(shader_programme, fs);
-
-    
     glBindAttribLocation(shader_programme, 0, "vertex_position");
     //Либо нормаль, либо цвет, не лучший метод, но самый простой
     if (!modelMode)
@@ -377,11 +342,8 @@ void Model::load_shaders(const char* vect, const char* frag)
     //Если есть текстура, её тоже надо прикрепить
     if(modelMode==2)
         glBindAttribLocation(shader_programme, 2, "vertex_texture");
-
-
     //Компоновка шейдерной программы
     glLinkProgram(shader_programme);
-
 }
 
 void Model::setMaterial(glm::vec3 a, glm::vec3 d, glm::vec3 s, GLfloat shine)
